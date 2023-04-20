@@ -54,18 +54,6 @@ class HotelsFeedback {
     }
 
 
-    // async click1Star() {
-    //     await this.commands.clickWebElement(this.oneStarLocator);
-    // }
-    // async click2Star() {
-    //     await this.commands.clickWebElement(this.twoStarLocator);
-    // }    
-    // async click3Star() {
-    //     await this.commands.clickWebElement(this.threeStarLocator);
-    // }
-    // async click4Star() {
-    //     await this.commands.clickWebElement(this.fourStarLocator);
-    // }
     async click5Star() {
         await this.commands.clickWebElement(this.fiveStarLocator);
     }

@@ -17,15 +17,15 @@ class HotelsHome {
     
     travelersLocator = 'button[data-stid=open-room-picker]';
     
-    adultsIncrease = "//body/div[@id='app-blossom-flex-ui']/div[@id='app-layer-manager']/div[@id='app-layer-base']/div[1]/div[2]/div[1]/div[1]/section[1]/form[1]/div[1]/div[1]/div[3]/div[1]/div[2]/div[1]/div[1]/section[1]/div[1]/div[1]/div[1]/div[1]/button[2]/span[1]/*[1]"
+    adultsIncrease ='//input[@id="traveler_selector_adult_step_input-0"]/following-sibling::button[@class="uitk-layout-flex-item uitk-step-input-touch-target"]';
     adultsDecrease = "//*[@id='traveler_selector_adult_step_input-0-decrease-title']"
     childIncrease = "//body/div[@id='app-blossom-flex-ui']/div[@id='app-layer-manager']/div[@id='app-layer-base']/div[1]/div[2]/div[1]/div[1]/section[1]/form[1]/div[1]/div[1]/div[3]/div[1]/div[2]/div[1]/div[1]/section[1]/div[1]/div[2]/div[1]/div[1]/button[2]"
-    childDecrease = "//*[@id='traveler_selector_children_step_input-0-decrease-title']"
+    childDecrease = '//input[@id="traveler_selector_children_step_input-0"]/preceding-sibling::button[@class="uitk-layout-flex-item uitk-step-input-touch-target"]';
     
     removeChildrenButton = "//input[contains(@aria-label,'Children')]/preceding-sibling::button";
     addChildrenButton = "//input[contains(@aria-label,'Children')]/following-sibling::button"
     addAdultsButton = "//input[@aria-label='Adults ']/following-sibling::button/span"
-
+    childrenMinusButtonlocator = '//input[@id="traveler_selector_children_step_input-0"]/preceding-sibling::button[@class="uitk-layout-flex-item uitk-step-input-touch-target"]';
     child1Age = '//select[@id="age-traveler_selector_children_age_selector-0-0"]'
     child2Age = '//select[@id="age-traveler_selector_children_age_selector-0-1"]'
     child3Age = '//select[@id="age-traveler_selector_children_age_selector-0-2"]'
@@ -41,7 +41,7 @@ class HotelsHome {
     totalChildren = '//input[@id="traveler_selector_children_step_input-0"]'
     numOfChildren = "//input[contains(@aria-label,'Children')]"
 
-    travelersDoneButton = "//button[text()='Done']"
+    travelersDoneButton =  '#traveler_selector_done_button';
 
     numOfTravelers = "//button[contains(text(),'travelers')]"
     numOfDropdownsForChildren = "//select[contains(@name,'child-traveler_selector')]"
@@ -65,9 +65,9 @@ class HotelsHome {
     lodging = '//p[contains(text(),"Lodging")]'
     privateResidence = '//p[contains(text(),"Private residence")]'
     
-    step1 = '//div[contains(text(),"Step 1 of 3")]'
-    step2 = '//div[contains(text(),"Step 2 of 3")]'
-    step3 = '//div[contains(text(),"Step 3 of 3")]'
+    step1of3Text = '//div[contains(text(),"Step 1 of 3")]'
+    step2of3Text = '//div[contains(text(),"Step 2 of 3")]'
+    step3of3Text = '//div[contains(text(),"Step 3 of 3")]'
 
     earn = '//h1[contains(text(),"See how much you could earn!")]'
     
@@ -94,9 +94,6 @@ class HotelsHome {
     star5 = '//span[contains(text(),"5★")]'
     sortBy = '//select[@id="sort"]'
     optionPrice ='//option[@value="PRICE_LOW_TO_HIGH"]'
-    firstStarRating = '//body/div[@id="app-shopping-pwa"]/div[@id="app-layer-manager"]/div[@id="app-layer-base"]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/section[1]/div[1]/div[2]/div[1]/div[2]/section[2]/ol[1]/li[2]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]'
-    secondStarRating = '//body/div[@id="app-shopping-pwa"]/div[@id="app-layer-manager"]/div[@id="app-layer-base"]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/section[1]/div[1]/div[2]/div[1]/div[2]/section[2]/ol[1]/li[3]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]'
-    thirdStarRating ='//body/div[@id="app-shopping-pwa"]/div[@id="app-layer-manager"]/div[@id="app-layer-base"]/div[1]/main[1]/div[1]/div[1]/div[1]/div[1]/div[1]/section[1]/div[1]/div[2]/div[1]/div[2]/section[2]/ol[1]/li[4]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]'
     allPrices = '//div[@class="uitk-text uitk-type-600 uitk-type-bold uitk-text-emphasis-theme"]'
     allStar = '//div[@class="uitk-rating"]'
 
@@ -114,7 +111,7 @@ class HotelsHome {
     numOfHotelsLocator = "//span[contains(text(),'More')]"
     priceLocator = "//div[contains(text(),'The price is')]/following-sibling::span//div"
 
-
+    autoSuggestion = '//li[@class="typeahead-prediction-item fds-list-item"]'
 
     lastRevisedDateLocator = '//span[text()="Last revised: 01/01/23"]';
 
@@ -124,10 +121,6 @@ class HotelsHome {
        return await $(this.lastRevisedDateLocator).getText();
 
     }
-
-
-
-   
 
     async currentDate() {
        return await $(this.lastUpdatedDateLocator).getText();
@@ -210,15 +203,15 @@ async clickPrivate() {
 }
 
 async isStep1Displayed() {
-    return await this.commands.isWebElementDisplayed(this.step1)
+    return await this.commands.isWebElementDisplayed(this.step1of3Text)
 }
 
 async isStep2Displayed() {
-    return await this.commands.isWebElementDisplayed(this.step2)
+    return await this.commands.isWebElementDisplayed(this.step2of3Text )
 }
 
 async isStep3Displayed() {
-    return await this.commands.isWebElementDisplayed(this.step3)
+    return await this.commands.isWebElementDisplayed(this.step3of3Text)
 }
 
 async isEarnDisplayed() {
@@ -247,8 +240,9 @@ async enterAddressText(address) {
     await this.commands.typeInWebElement(this.enterAddress, address)
 }
 
+
 async intoGoingToAddress(text) {
-    const autoSuggestionElements = await $$('//li[@class="typeahead-prediction-item fds-list-item"]');
+    const autoSuggestionElements =  this.autoSuggestion
     for (const autoSuggestionElement of autoSuggestionElements) {
       const suggestionText = await autoSuggestionElement.getText();
       if (
@@ -302,8 +296,6 @@ async verifyAllHotelsAreSameRating(){
 async clickFiveStarRating(){
     await this.commands.isWebElementDisplayedWithWait(this.button);
     await this.commands.scrollAndClickWebElement(this.fiveStarLocator);
-    // await this.commands.clickWebElement(this.fiveStarLocator);
-        // await browser.pause(2000);
 }
 
 async selectFromSortByDropdown(value){
@@ -358,15 +350,17 @@ async clickFeedbackLink() {
 }
 
 async clickTraveler() {
-    await $(this.travelersLocator).waitForDisplayed();
+    await $(this.travelersLocator).waitForDisplayed(10000);
     await this.commands.clickWebElement(this.travelersLocator);
 }
 
 async clickAdultsIncrease() {
+    await $(this.addAdultsButton).waitForDisplayed(10000);
     await this.commands.clickWebElement(this.adultsIncrease);
 }
 
 async clickAdultsDecrease() {
+    await $(this.adultsDecrease).waitForDisplayed(10000);
     await this.commands.clickWebElement(this.adultsDecrease);
 }
 
@@ -396,10 +390,12 @@ async clickChildMinusButton(num){
 }
 
 async clickChildIncrease() {
+    await $(this.childIncrease).waitForDisplayed(10000);
     await this.commands.clickWebElement(this.childIncrease);
 }
 
 async clickChildDecrease() {
+    await $(this.childDecrease).waitForDisplayed(10000);
     await this.commands.clickWebElement(this.childDecrease);
 }
 
@@ -421,8 +417,7 @@ async clickDoneButton() {
 }
 
 async travelersText () {
-    let text = await command.getTextFunction(this.travelers)
-    console.log('RIGHT HERE' + text);
+    let text = await this.commands.getTextFunction(this.travelers)
     let index = text.search(/[0-9]/);
     let firstNum = Number(text[index]);
     return firstNum;
@@ -464,18 +459,17 @@ async verify0Dropdown(){
 }
 
 async addChildrenisEnabled() {
-    return await this.commands.isWebElementEnabled(this.childIncrease);
+    return await this.commands.isWebElementEnabled(this.addChildrenButton);
 }
 async removeChildrenisEnabled() {
-    return await this.commands.isWebElementEnabled(this.childDecrease);
+    return await this.commands.isWebElementEnabled(this.childrenMinusButtonlocator);
 
 
 }
 
-
-
-
-
+async isChildrenMinusButtonEnable() {
+    return await $(this.childrenMinusButtonlocator).isEnabled();
+}
 }
 
 module.exports = HotelsHome
